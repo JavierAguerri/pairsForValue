@@ -16,8 +16,9 @@ function getPairsForValueOptimizedWithHashMap(alist, avalue) {
     let complement = avalue - num;
     if (countMap.has(complement)) {
       let count = countMap.get(complement);
+      let complementIsLarger = num < complement;
       for (let i = 0; i < count; i++) {
-        if (num < complement) {
+        if (complementIsLarger) {
           ret.push([num, complement]);
         } else {
           ret.push([complement, num]);

@@ -3,8 +3,17 @@
   "version": "1.0.0",
   "description": "<p>The getPairsForValue () function receives a list of integers and a value A and determines if there is any pair of numbers in the list whose sum is A.",
   "scripts": {
-    "test:original": "FUNCTION_TO_TEST=getPairsForValueOriginal jest",
-    "test:hashmap": "FUNCTION_TO_TEST=getPairsForValueOptimizedWithHashMap jest"
+    "test:original": "FUNCTION_TO_TEST=getPairsForValueOriginal DATA_SET=testData jest",
+    "test:original:fewpairs": "FUNCTION_TO_TEST=getPairsForValueOriginal DATA_SET=largeTestDataWithFewPairs jest",
+    "test:original:manypairs": "FUNCTION_TO_TEST=getPairsForValueOriginal DATA_SET=largeTestDataWithManyPairs jest",
+    
+    "test:sort": "FUNCTION_TO_TEST=getPairsForValueOptimizedWithSorting DATA_SET=testData jest",
+    "test:sort:fewpairs": "FUNCTION_TO_TEST=getPairsForValueOptimizedWithSorting DATA_SET=largeTestDataWithFewPairs jest",
+    "test:sort:manypairs": "FUNCTION_TO_TEST=getPairsForValueOptimizedWithSorting DATA_SET=largeTestDataWithManyPairs jest",
+    
+    "test:hashmap": "FUNCTION_TO_TEST=getPairsForValueOptimizedWithHashMap DATA_SET=testData jest",
+    "test:hashmap:fewpairs": "FUNCTION_TO_TEST=getPairsForValueOptimizedWithHashMap DATA_SET=largeTestDataWithFewPairs jest",
+    "test:hashmap:manypairs": "FUNCTION_TO_TEST=getPairsForValueOptimizedWithHashMap DATA_SET=largeTestDataWithManyPairs jest"
   },
   "author": "Javier Aguerri",
   "license": "ISC",

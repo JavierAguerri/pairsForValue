@@ -44,16 +44,46 @@
 <p><i>Implement a more efficient version that, if possible, does not have the problems we identified in exercise 1. Indicate the order of complexity of the new version.</i></p>
 
 ### Answer
-<p>Let's use a hashmap to track the frequency of each integer. Then we can iterate over the array to find matching pairs in the hashmap. This implementation achieves linear time complexity and also linear space complexity. See the implementation and some comments in the code. Other alternatives could involve sorting the array and iterating over it to find pairs more efficiently, but they wouldn't achieve linear time complexity.<p>
-<p>
+<p>Let's consider two approaches. The first uses a hashmap to keep track of the frequency of each number and then iterates over the array to find a matching integer in the hashmap. The second approach involves sorting the list first and then using a two-pointer technique to find the matching pairs.</p>
 
-<p>The code includes some tests to assess the well functioning of the implemented solution. In order to execute them, follow these instructions:</p>
+<p><b>The hashmap implementation has a linear time complexity O(n)</b> compared to O(nlog n) of the sort+twoPointer approach. However, sort+twoPointer can achieve space complexity as good as O(1), while <b>the hashmap has linear space complexity</b>, so sort+twoPointer could be the preferred implementation in case we face memory constraints. Note that the output is not being considered in terms of space complexity as it is the same for both approaches, but it could be as high as O(n²) in worst case.<p> 
+
+<p>Before discussing the sort+twoPointer option, it is worth mention that we could just sort the array with the built-in <code>Array.prototype.sort()</code> method. However, in this exercise, I want to demonstrate how to choose and implement a sorting algorithm based on the specific context and requirements.</p>
+
+<p>The golden rule when dealing with sorting algorithms is to gather as much information as possible about the data to be sorted and the environment where the algorithm will run because there is no one-size-fits-all solution in this context. Some considerations:<p>
 <ul>
+    <li>The data are simple integers.</li>
+    <li>We don't know if we are sorting small or large data sets.</li>
+    <li>For the two-pointer approach to have O(1) space complexity, the sorting algorithm needs to be in-place. This rules out merge-based sorts.</li>
+    <li>Sorting stability is not required here.</li>
+    <li>We don’t know if the input will be partially sorted.</li>
+    <li>We’re assuming single-thread execution, so parallel sorting isn’t considered.</li>
+</ul>
+
+<p>Heapsort is a good fit here because it provides in-place sorting with O(n log n) time complexity in the best, average, and worst cases. It’s a balanced choice given the lack of detailed information about the input.</p>
+
+<p>The two-pointer approach to extract the matching pairs from the sorted array has linear time complexity and constant space complexity, so <b>the net performance for the sort+twoPointer approach is still O(nlog n) time complexity and O(1) space complexity</b>. As mentioned before, the approach to follow in a real scenario will depend on specific constrains. Also further optimizations can be made to the showcased implementations if more information is provided about the input data.</p>
+
+<p>The code includes some tests to assess the well functioning of the implemented solution. In order to run them, follow these instructions:</p>
+<ul>
+<li>Download project</li>
 <li>Install latest nvm</li>
 <li>Use nvm to install node 20.17 and npm 10.8.2</li>
+<li>Navigate to the project folder</li>
 <li>In the terminal, run <code>npm install</code></li>
-<li>To run the tests, you can choose which version of the algorithm you want to test:<br>
-<code>npm run test:original</code><br>
-<code>npm run test:hashmap</code><br>
+<li>To run the tests, you can choose which version of the algorithm and data set you want to test:<br>
+<code>npm run test:original # standard data set</code><br>
+<code>npm run test:sort # standard data set</code><br>
+<code>npm run test:hashmap # standard data set</code><br>
+
+<code>npm run test:sort:fewpairs # large data set with few pairs expected</code><br>
+<code>npm run test:hashmap:fewpairs # large data set with few pairs expected</code><br>
+<code>npm run test:sort:manypairs # large data set with many pairs expected</code><br>
+<code>npm run test:hashmap:manypairs # large data set with many pairs expected</code><br>
+You might not want to run these:<br>
+<code>npm run test:original:fewpairs # large data set with few pairs expected</code><br>
+<code>npm run test:original:manypairs # large data set with many pairs expected</code><br>
 </li>
 </ul>
+<p>Compare the execution times between sort and hashmap approaches for large data sets using the auxiliary files <code>tmp/execution_algorithm_dataset.tmp</code>, where times are logged after each execution. It would be interesting to monitor memory usage for
+each approach, but it is out of the scope of this exercise.</p>
