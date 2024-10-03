@@ -1,0 +1,15 @@
+{
+  "name": "getpairsforvalue",
+  "version": "1.0.0",
+  "description": "<p>The getPairsForValue () function receives a list of integers and a value A and determines if there is any pair of numbers in the list whose sum is A.",
+  "scripts": {
+    "test:original": "FUNCTION_TO_TEST=getPairsForValueOriginal jest",
+    "test:sort": "FUNCTION_TO_TEST=getPairsForValueOptimizedWithSorting jest",
+    "test:hashmap": "FUNCTION_TO_TEST=getPairsForValueOptimizedWithHashMap jest"
+  },
+  "author": "Javier Aguerri",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
