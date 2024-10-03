@@ -1,5 +1,5 @@
 function getPairsForValueOptimizedWithHashMap(alist, avalue) {
-  let ret = []; // resulting pairs
+  let ret = [];
   let countMap = new Map(); // will hold the count of occurrences of each number in the list
 
   /* 
@@ -17,7 +17,6 @@ function getPairsForValueOptimizedWithHashMap(alist, avalue) {
     if (countMap.has(complement)) {
       let count = countMap.get(complement);
       for (let i = 0; i < count; i++) {
-        // Ensure the smaller number comes first for consistency
         if (num < complement) {
           ret.push([num, complement]);
         } else {
@@ -25,7 +24,6 @@ function getPairsForValueOptimizedWithHashMap(alist, avalue) {
         }
       }
     }
-    // Increment the count for the current number
     countMap.set(num, (countMap.get(num) || 0) + 1);
   }
   return ret;
